@@ -36,4 +36,68 @@ function setup_partytown() {
 
 add_action( 'wp_head', 'setup_partytown', 1 );
 
+add_action( 'admin_menu', 'partytown_analytics_settings_menu' );
+
+function partytown_analytics_settings_menu() {
+    add_options_page(
+        'Partytown Analytics Settings',
+        'Partytown Analytics',
+        'manage_options',
+        'partytown-analytics-settings', // menu slug
+        'partytown_analytics_settings_page' // callback function to display page content
+    );
+}
+
+function partytown_analytics_settings_page() {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+    $option_name = 'partytown_analytics_inputs';
+
+    if ( isset( $_POST['partytown_analytics_save_settings'] ) ) {
+        $options = array();
+        foreach ($_POST[$option_name] as $key => $value) {
+            $options[$key] = sanitize_text_field( $value );
+        }
+        update_option( $option_name, $options );
+    }
+    $options = get_option( $option_name , array())
+    
+    ?>
+    <div class="pta-wrap">
+        <h1 class="pta-title"><?php echo esc_html( get_admin_page_title() ); ?></h1>
+        <form class="pta-form" method="post" action="">
+            <?php wp_nonce_field( 'partytown_analytics_save_settings', 'partytown_analytics_settings_nonce' ); ?>
+            <div class="pta-section-heading">Integrations</div>
+            <div class="pta-row">
+                <div class="pta-labels">
+                    <label class="pta-label">Text Input</label>
+                    <p class="pta-desc">
+                        This is a test google decriptiion that i make
+                    </p>
+                </div>
+                <div class="pta-fields">
+                    <input type="text" class="pta-input" placeholder="Tracking Code"
+                    name="<?php echo esc_attr( $option_name ); ?>[checkbox_input]" value="<?php echo $options['checkbox_input'] ?? ''; ?>"
+                    />
+                </div>
+            </div>
+            <div class="pta-hr"></div>
+            <div class="pta-section-heading">
+                <input type="submit" name="partytown_analytics_save_settings" value="Save Settings" class="button-primary pta-btn" />
+            </div>
+        </form>
+    </div>
+    <?php
+}
+
+
+function my_plugin_enqueue_styles() {
+    $screen = get_current_screen();
+
+    if ( $screen->id === 'settings_page_partytown-analytics-settings' ) {
+        wp_enqueue_style( 'partytown-analytics-settings-styles', plugins_url( 'src/style.css', __FILE__ ) );
+    }
+}
+add_action( 'admin_enqueue_scripts', 'my_plugin_enqueue_styles', 10, 1 );
 ?>
