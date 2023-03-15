@@ -26,8 +26,17 @@ function setup_partytown() {
 ?>
     <script>
         window.partytown = <?php echo wp_json_encode( $config ); ?>;
+        // window.ga_tracking = 'G-Q93E91R2W9'
     </script>
     <script src="<?php echo $partytown_js;?>"></script>
+    <script id="ga_script" type="text/partytown" src="<?php echo $plugin_dir ?>src/ga/analytics.js?id=G-Q93E91R2W9"></script>
+    <script type="text/partytown">
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-Q93E91R2W9');
+    </script>
     <script type="text/partytown">
         console.log('from party town')
     </script>
