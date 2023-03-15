@@ -71,14 +71,14 @@ function partytown_analytics_settings_page() {
             <div class="pta-section-heading">Integrations</div>
             <div class="pta-row">
                 <div class="pta-labels">
-                    <label class="pta-label">Text Input</label>
+                    <label class="pta-label">GA Tracking Code</label>
                     <p class="pta-desc">
-                        This is a test google decriptiion that i make
+                        Please enter the your google analytics tracking code.
                     </p>
                 </div>
                 <div class="pta-fields">
                     <input type="text" class="pta-input" placeholder="Tracking Code"
-                    name="<?php echo esc_attr( $option_name ); ?>[checkbox_input]" value="<?php echo $options['checkbox_input'] ?? ''; ?>"
+                    name="<?php echo esc_attr( $option_name ); ?>[ga_tracking]" value="<?php echo $options['ga_tracking'] ?? ''; ?>"
                     />
                 </div>
             </div>
