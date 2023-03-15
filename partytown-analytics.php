@@ -26,7 +26,6 @@ function setup_partytown() {
 ?>
     <script>
         window.partytown = <?php echo wp_json_encode( $config ); ?>;
-        // window.ga_tracking = 'G-Q93E91R2W9'
     </script>
     <script src="<?php echo $partytown_js;?>"></script>
     <script id="ga_script" type="text/partytown" src="<?php echo $plugin_dir ?>src/ga/analytics.js?id=G-Q93E91R2W9"></script>
@@ -36,9 +35,6 @@ function setup_partytown() {
         gtag('js', new Date());
 
         gtag('config', 'G-Q93E91R2W9');
-    </script>
-    <script type="text/partytown">
-        console.log('from party town')
     </script>
 <?php
 }
@@ -89,6 +85,7 @@ function partytown_analytics_settings_page() {
                     <input type="text" class="pta-input" placeholder="Tracking Code"
                     name="<?php echo esc_attr( $option_name ); ?>[ga_tracking]" value="<?php echo $options['ga_tracking'] ?? ''; ?>"
                     />
+                    <button>LOGIN WITH GOOGLE</button>
                 </div>
             </div>
             <div class="pta-hr"></div>
