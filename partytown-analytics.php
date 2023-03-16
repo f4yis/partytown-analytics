@@ -129,7 +129,7 @@ function partytown_analytics_settings_page() {
                     <input type="text" class="pta-input" placeholder="G-XXXXXXXXXX"
                     name="<?php echo esc_attr( $option_name ); ?>[ga_tracking]" value="<?php echo $options['ga_tracking'] ?? ''; ?>"
                     />
-                    <button type="button" onclick="window.location.href = `http://localhost:3000/pta/auth?url=${window.location.href}`">LOGIN WITH GOOGLE</button>
+                    <button type="button" onclick="window.location.href = `https://app.fayis.in/pta/auth?url=${window.location.href}`">LOGIN WITH GOOGLE</button>
                 </div>
             </div>
             <div class="pta-hr"></div>
