@@ -23,20 +23,33 @@ function setup_partytown() {
 
     $partytown_js = $plugin_dir . $partytown_dir . 'partytown.js';
 
+    $option_name = 'partytown_analytics_inputs';
+    $options = get_option( $option_name , array());
+    $GA_ID = $options['ga_tracking'];
+    $enabled = false;
+    if($GA_ID) {
+        $enabled = true;
+    }
+    if($enabled == true): 
 ?>
     <script>
         window.partytown = <?php echo wp_json_encode( $config ); ?>;
     </script>
     <script src="<?php echo $partytown_js;?>"></script>
-    <script id="ga_script" type="text/partytown" src="<?php echo $plugin_dir ?>src/ga/analytics.js?id=G-Q93E91R2W9"></script>
+    <?php
+        if($GA_ID):
+    ?>
+    <script id="ga_script" type="text/partytown" src="<?php echo $plugin_dir ?>src/ga/analytics.js?id=<?php echo $GA_ID;?>"></script>
     <script type="text/partytown">
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-Q93E91R2W9');
+        gtag('config', '<?php echo $GA_ID;?>');
     </script>
 <?php
+    endif;
+    endif;
 }
 
 add_action( 'wp_head', 'setup_partytown', 1 );
