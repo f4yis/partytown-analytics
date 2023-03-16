@@ -28,6 +28,7 @@ function setup_partytown() {
     $GA_ID = $options['ga_tracking'];
     $enabled = false;
     if($GA_ID) {
+        $config['forward'] = array("dataLayer.push");
         $enabled = true;
     }
     if($enabled == true): 
