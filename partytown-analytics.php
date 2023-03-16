@@ -121,11 +121,11 @@ function partytown_analytics_settings_page() {
                 <div class="pta-labels">
                     <label class="pta-label">GA Tracking Code</label>
                     <p class="pta-desc">
-                        Please enter the your google analytics tracking code.
+                        Please enter the your google analytics tracking code (GA4).
                     </p>
                 </div>
                 <div class="pta-fields input-with-btn">
-                    <input type="text" class="pta-input" placeholder="Tracking Code"
+                    <input type="text" class="pta-input" placeholder="G-XXXXXXXXXX"
                     name="<?php echo esc_attr( $option_name ); ?>[ga_tracking]" value="<?php echo $options['ga_tracking'] ?? ''; ?>"
                     />
                     <button type="button" onclick="window.location.href = `http://localhost:3000/pta/auth?url=${window.location.href}`">LOGIN WITH GOOGLE</button>
