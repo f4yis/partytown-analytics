@@ -59,6 +59,36 @@ function partytown_analytics_settings_page() {
     }
     $option_name = 'partytown_analytics_inputs';
 
+    if ( isset( $_POST['google_auth'] ) ) {
+        ?>
+        <div class="pta-popup-overlay">
+            <form class="pta-popup" method="post" action="">
+                <?php wp_nonce_field( 'partytown_analytics_save_settings', 'partytown_analytics_settings_nonce' ); ?>
+                <div class="pta-section-heading">Integrations<span onclick="window.location.href = window.location.href" style="margin-left: auto;"><svg width="12" height="12" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="121.31px" height="122.876px" viewBox="0 0 121.31 122.876" enable-background="new 0 0 121.31 122.876" xml:space="preserve"><g><path fill-rule="evenodd" clip-rule="evenodd" d="M90.914,5.296c6.927-7.034,18.188-7.065,25.154-0.068 c6.961,6.995,6.991,18.369,0.068,25.397L85.743,61.452l30.425,30.855c6.866,6.978,6.773,18.28-0.208,25.247 c-6.983,6.964-18.21,6.946-25.074-0.031L60.669,86.881L30.395,117.58c-6.927,7.034-18.188,7.065-25.154,0.068 c-6.961-6.995-6.992-18.369-0.068-25.397l30.393-30.827L5.142,30.568c-6.867-6.978-6.773-18.28,0.208-25.247 c6.983-6.963,18.21-6.946,25.074,0.031l30.217,30.643L90.914,5.296L90.914,5.296z"/></g></svg></span></div>
+                <div class="pta-row">
+                    <div class="pta-popup-sec" style="">
+                        <label class="pta-label">Select GA</label>
+                        <select class="pta-select" name="<?php echo esc_attr( $option_name ); ?>[ga_tracking]">
+                            <?php
+                                $lines = explode("\n",$_POST['data']);
+                                foreach($lines as $x => $val) {
+                                    $list = explode("||||", $val);
+                                    $last = end($list);
+                                    $val = str_replace("||||"," -> ",$val);
+                                    echo "<option value='$last'>$val</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="pta-section-heading">
+                    <input type="submit" name="partytown_analytics_save_settings" value="Save Settings" class="button-primary pta-btn" />
+                </div>
+            </form>
+        </div>
+    <?php
+    }
+    
     if ( isset( $_POST['partytown_analytics_save_settings'] ) ) {
         $options = array();
         foreach ($_POST[$option_name] as $key => $value) {

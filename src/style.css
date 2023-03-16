@@ -22,7 +22,7 @@
     box-shadow: 0 2px 0 #e6e6e6;
 }
 .pta-section-heading {
-    display: block;
+    display: flex;
     margin: 0;
     border-bottom: 1px solid #e6e6e6;
     padding: 15px 30px;
@@ -97,6 +97,38 @@
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.pta-popup-overlay {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    height: 100vh;
+    z-index: 999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pta-popup {
+    background: #fff;
+    max-width: 500px;
+    margin: 10px;
+    width: 100%;
+    border-radius: 4px;
+}
+.pta-popup-sec {
+    width: 100%;
+    padding: 25px 30px 0px 30px;
+    box-sizing:border-box;
+    display: flex;
+    flex-direction: column;
+}
+.pta-select {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px 14px !important;
+    max-width: 100% !important;
 }
 
 @media screen and (max-width: 600px) {
