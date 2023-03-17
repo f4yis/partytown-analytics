@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Partytown Analytics
- * Plugin URI: https://fayis.in
+ * Plugin URI: https://fayis.in/partytown-analytics
  * Description: Partytown Analytics for wordpress
  * Version: 1.0.0
  * Author: Mohamed Fayis
